@@ -1,0 +1,25 @@
+.inputBase{
+  display: flex;
+  flex-direction: column;
+}
+
+.inputLabel{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.label{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 4px;
+  color: #00A36C;
+  
+}
+
+.input{
+  width: 300px;
+  font-size: 15px;
+  padding: 5px 10px;
+}

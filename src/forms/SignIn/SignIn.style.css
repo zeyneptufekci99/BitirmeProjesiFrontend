@@ -1,0 +1,47 @@
+.signinBase{
+  margin-top: 40px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.signinWrapper{
+  width: 800px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #6F8FAF;
+  padding: 20px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.formBase{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.submitButton{
+  width: 400px;
+  padding: 5px 15px;
+  font-size: 20px;
+  background-color: #6F8FAF;
+  color:#fff;
+  margin-top: 40px;
+  border: 0px solid #6F8FAF;
+}
+
+.goToSignUp{
+  padding: 5px 15px;
+  font-size: 20px;
+  background-color: #fff;
+  color: black;
+  margin-top: 40px;
+  cursor: pointer;
+  border: 2px solid #6F8FAF;
+  text-decoration: none;
+}
