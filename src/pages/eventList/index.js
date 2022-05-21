@@ -3,7 +3,8 @@ import List from "../../components/List/List";
 import { connect } from "react-redux";
 import { getEvents } from "../../slice/event.slice";
 import "./index.css";
-
+import { Link } from "react-router-dom";
+import Layout from "../../components/Layout/Layout";
 class EventList extends React.Component {
   componentDidMount() {
     this.props.getEvents();
@@ -12,15 +13,13 @@ class EventList extends React.Component {
     const { events } = this.props;
 
     return (
-      <>
-        <p className="eventlist-heading">Events</p>
-        <List
-          onClickLiked={() => console.log("Tıklandı")}
-          list={events}
-          type="events"
-          isFavorite={false}
-        ></List>
-      </>
+      <Layout>
+        <Link className="createButton" to={"/create-event"}>
+          Etkinlik Oluştur
+        </Link>
+        <p className="eventlist-heading">Etkinliler</p>
+        <List list={events} type="events"></List>
+      </Layout>
     );
   }
 }

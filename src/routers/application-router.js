@@ -37,7 +37,7 @@ function ApplicationRouter(props) {
         ></Route>
         <Route
           path="/events/:id"
-          element={<EventWrapper></EventWrapper>}
+          element={<EventWrapper userId={userId}></EventWrapper>}
         ></Route>
         <Route path="/events" element={<EventList></EventList>}></Route>
         <Route path="/contact" element={<Contact></Contact>}></Route>
@@ -46,7 +46,10 @@ function ApplicationRouter(props) {
           path="/create-event"
           element={<CreateEvent></CreateEvent>}
         ></Route>
-        <Route path="/events/:id" element={<UpdateEvent></UpdateEvent>}></Route>
+        <Route
+          path="/update-event/:id"
+          element={<UpdateEvent></UpdateEvent>}
+        ></Route>
         <Route
           path="/sign-in"
           element={

@@ -3,6 +3,21 @@
   display: flex;
 }
 
+.eventName {
+  font-size: 30px;
+  color: #212529;
+}
+.eventOtherInfo {
+  font-size: 20px;
+  color: #212529;
+}
+
+.eventQuota {
+  font-size: 10px;
+  color: #212529;
+}
+
+
 .eventImage {
   height: 400px;
   width: 300px;
@@ -89,6 +104,10 @@
   
 }
 .commentButton{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   border-radius: 8px;
   background-color: #00A36C;
   border: 0;
@@ -112,4 +131,20 @@
   color: #ffffff;
   width: 20px;
   margin-right: 5px;
+}
+.updateButton {
+  border-radius: 8px;
+  width: 80px;
+  text-align: center;
+  background-color: #00A36C;
+  border: 0;
+  color:#ffffff;
+  padding: 5px;
+  text-decoration: none;
+}
+.updateButtonContainer {
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }

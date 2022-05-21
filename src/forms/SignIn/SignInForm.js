@@ -11,7 +11,7 @@ const SignInInnerForm = (props) => {
   return (
     <div className="signinBase">
       <div className="signinWrapper">
-        <h1>Sign In</h1>
+        <h1>Üye Girişi</h1>
         <form className="formBase" onSubmit={handleSubmit}>
           <Input
             onChange={handleChange}
@@ -76,7 +76,7 @@ const SignInForm = withFormik({
       action.props.getUserId(user.id);
     } else {
       setTimeout(() => {
-        alert("Password or username incorrect");
+        alert("Giriş Başarısız");
       }, 1000);
     }
   },

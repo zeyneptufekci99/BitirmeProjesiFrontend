@@ -11,13 +11,13 @@ class Header extends React.Component {
         </NavLink>
         <div className="optionContainer">
           <NavLink className="options" to={"/events"}>
-            <span>Events</span>
+            <span>Etkinlikler</span>
           </NavLink>
           <NavLink className="options" to={"/profile"}>
-            <span>Profile</span>
+            <span>Profil</span>
           </NavLink>
           <NavLink className="options" to={"/contact"}>
-            <span>Contact</span>
+            <span>İletişim</span>
           </NavLink>
         </div>
 

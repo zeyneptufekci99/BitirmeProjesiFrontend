@@ -11,7 +11,7 @@ const SignUpInnerForm = (props) => {
   return (
     <div className="signinBase">
       <div className="signinWrapper">
-        <h1>Sign Up</h1>
+        <h1>Üye Ol</h1>
         <form className="formBase" onSubmit={handleSubmit}>
           <Input
             onChange={handleChange}
