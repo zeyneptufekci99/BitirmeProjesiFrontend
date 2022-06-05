@@ -12,61 +12,49 @@ import UpdateEvent from "../pages/createEvent/updateEvent";
 import EventWrapper from "../pages/event/EventWrapper.js";
 import Buy from "../pages/buy";
 import Contact from "../pages/contact";
+import Donate from "../pages/donate";
+import RequireAuth from "../utils/require-auth";
 function ApplicationRouter(props) {
-  const [userId, setUserId] = useState(-1);
-  const [isSignedIn, setSignedIn] = useState(false);
-
   return (
     <>
       <Routes>
         <Route
           path="/"
           element={
-            isSignedIn ? (
+            <RequireAuth roles={["User", "Admin", "Donor"]}>
               <Home></Home>
-            ) : (
-              <SignIn
-                setIsSignedIn={() => {
-                  props.setIsSignedIn();
-                  setSignedIn(true);
-                }}
-                getUserId={(id) => setUserId(id)}
-              ></SignIn>
-            )
+            </RequireAuth>
           }
         ></Route>
         <Route
           path="/events/:id"
-          element={<EventWrapper userId={userId}></EventWrapper>}
+          element={<EventWrapper></EventWrapper>}
         ></Route>
+        <Route path="donate" element={<Donate></Donate>}></Route>
         <Route path="/events" element={<EventList></EventList>}></Route>
         <Route path="/contact" element={<Contact></Contact>}></Route>
         <Route path="/buy" element={<Buy></Buy>}></Route>
+
         <Route
           path="/create-event"
-          element={<CreateEvent></CreateEvent>}
+          element={
+            <RequireAuth roles={["Admin"]}>
+              <CreateEvent></CreateEvent>
+            </RequireAuth>
+          }
         ></Route>
         <Route
           path="/update-event/:id"
-          element={<UpdateEvent></UpdateEvent>}
-        ></Route>
-        <Route
-          path="/sign-in"
           element={
-            <SignIn
-              setIsSignedIn={() => {
-                props.setIsSignedIn();
-                setSignedIn(true);
-              }}
-              getUserId={(id) => setUserId(id)}
-            ></SignIn>
+            <RequireAuth roles={["Admin"]}>
+              <UpdateEvent></UpdateEvent>
+            </RequireAuth>
           }
         ></Route>
+
+        <Route path="/sign-in" element={<SignIn></SignIn>}></Route>
         <Route path="/sign-up" element={<SignUp></SignUp>}></Route>
-        <Route
-          path="/profile"
-          element={<Profile userId={userId}></Profile>}
-        ></Route>
+        <Route path="/profile" element={<Profile></Profile>}></Route>
       </Routes>
     </>
   );

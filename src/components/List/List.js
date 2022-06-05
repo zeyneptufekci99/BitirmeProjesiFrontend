@@ -13,7 +13,6 @@ const List = (props) => {
               name={item.name}
               imageUrl={item.imageUrl}
               isLiked={props.isFavorite}
-              onClickLiked={() => props.onClickLiked()}
               type={props.type}
             ></Card>
           </Col>

@@ -19,7 +19,6 @@ const SignUp = (props) => {
   useEffect(() => {
     if (user.name !== "") {
       props.createUser(user).then((response) => {
-        console.log(response);
         navigate("/");
       });
     }

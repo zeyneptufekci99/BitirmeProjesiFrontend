@@ -1,0 +1,16 @@
+.box{
+  padding: 25px;
+width: fit-content;
+  height: auto;
+  background-color: rgba(0, 163, 108, 1);
+  border: white 3px solid;
+  border-radius: 25px;
+}
+.text{
+  background-color: rgba(0, 163, 108, 1);
+  font-size: 16px;
+  color: white;
+  margin-right: 10px;
+  border: 1px transparent solid;
+  border-radius: 15px;
+}

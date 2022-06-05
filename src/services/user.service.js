@@ -13,11 +13,10 @@ class UserService {
   create(data) {
     data.roleId = 1;
     return api.post(`${apiPath}`, data);
-
   }
 
   update(data) {
-    data.roleId = 1;
+    //data.roleId = 1;
     return api.put(`${apiPath}`, data);
   }
 

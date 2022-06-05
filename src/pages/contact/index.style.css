@@ -1,0 +1,25 @@
+.contactContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.contactBase{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.infoBanner{
+    padding: 15px;
+    border-radius: 15px;
+    color: #ffffff;
+    display: flex;
+    background-color: rgba(0, 163, 108, 1);
+margin-bottom: 20px;
+}
+

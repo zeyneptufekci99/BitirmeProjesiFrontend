@@ -7,16 +7,12 @@ import { BrowserRouter } from "react-router-dom";
 import Header from "./components/Header/Header";
 import ApplicationRouter from "./routers/application-router";
 const AuthProvider = () => {
-  const [isSignedIn, setIsSignedIn] = useState(false);
-
   return (
     <>
       <Provider store={store}>
         <BrowserRouter>
-          <Header isSignIn={isSignedIn} message={true}></Header>
-          <ApplicationRouter
-            setIsSignedIn={() => setIsSignedIn(true)}
-          ></ApplicationRouter>
+          <Header></Header>
+          <ApplicationRouter></ApplicationRouter>
         </BrowserRouter>
       </Provider>
     </>

@@ -1,0 +1,26 @@
+.boxBase{
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 163, 108, 1);
+  height: auto;
+  border: rgba(0, 163, 108, 1) 3px solid;
+  border-radius: 25px;
+  padding: 15px;
+}
+.boxTitle{
+  font-size: 22px;
+  color: #fff;
+}
+
+.linkText{
+  font-size: 16px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.linkName{
+  font-size: 16px;
+  text-decoration: underline;
+  color: #fff;
+}

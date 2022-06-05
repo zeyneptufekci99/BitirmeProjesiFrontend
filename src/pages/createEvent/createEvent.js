@@ -26,7 +26,6 @@ const CreateEvent = (props) => {
   useEffect(() => {
     if (event.name !== "") {
       props.createEvent(event).then((response) => {
-        console.log("response", response);
         navigate("/events");
       });
     }

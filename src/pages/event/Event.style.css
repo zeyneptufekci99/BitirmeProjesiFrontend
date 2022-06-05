@@ -17,7 +17,12 @@
   color: #212529;
 }
 
-
+.mapContainer {
+  background-color: #00A36C;
+  padding: 5px;
+  margin-top: 20px;
+  width: fit-content;
+}
 .eventImage {
   height: 400px;
   width: 300px;

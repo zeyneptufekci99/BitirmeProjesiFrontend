@@ -1,0 +1,19 @@
+
+
+.submitButton{
+  font-size: 20px;
+  margin-top: 5px;
+  border-radius: 8px;
+  background-color: #00A36C;
+  border: 0;
+  color:#ffffff;
+  padding: 5px;
+  width: 100px;
+}
+
+.inputBase{
+  width: 100%;
+  min-height: 100px;
+  max-width: 100%;
+}
+

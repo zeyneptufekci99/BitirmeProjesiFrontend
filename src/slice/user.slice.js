@@ -21,7 +21,7 @@ export const removeUser = createAsyncThunk("users/remove", async ({ id }) => {
     username: response.data.username,
     email: response.data.email,
     password: response.data.password,
-    roleId: 1,
+    roleId: response.data.roleId,
   };
 });
 
@@ -50,7 +50,6 @@ const userSlice = createSlice({
       state.splice(index, 1);
     },
     [updateUser.fulfilled]: (state, action) => {
-      console.log("acc", action.payload.id);
       let updatedUser = state.findIndex((x) => x.id === action.payload.id);
       state[updatedUser] = {
         ...state[updatedUser],

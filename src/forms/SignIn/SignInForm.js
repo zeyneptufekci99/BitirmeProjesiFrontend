@@ -8,6 +8,7 @@ import { withFormik } from "formik";
 const SignInInnerForm = (props) => {
   const { values, touched, errors, handleChange, handleBlur, handleSubmit } =
     props;
+
   return (
     <div className="signinBase">
       <div className="signinWrapper">
@@ -63,17 +64,12 @@ const SignInForm = withFormik({
   },
 
   handleSubmit: (values, action) => {
-    const user = action.props.userList.find(
-      (i) => i.username == values.username
-    );
-
-    if (user.password == values.password) {
+    if (values.username != "" && values.password != "") {
       setTimeout(() => {
         alert("Giriş Başarılı");
       }, 1000);
 
-      action.props.setIsSignedIn(true);
-      action.props.getUserId(user.id);
+      action.props.getValues(values);
     } else {
       setTimeout(() => {
         alert("Giriş Başarısız");

@@ -35,7 +35,6 @@ const UpdateEvent = ({ getEventById, events, updateEvent }) => {
       const modifiedValue = { ...eventProps, id: params.id };
 
       updateEvent(modifiedValue).then((response) => {
-        console.log("response", response);
         navigate("/events");
       });
     }

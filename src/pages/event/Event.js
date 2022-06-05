@@ -10,40 +10,55 @@ import { useNavigate } from "react-router-dom";
 import CommentForm from "../../forms/Comment/CommentForm";
 import { getComments, createComment } from "../../slice/comment.slice";
 import { Link } from "react-router-dom";
-function withParams(Component) {
-  return (props) => <Component {...props} params={useParams()} />;
-}
+import { Map, YMaps } from "react-yandex-maps";
 const Event = ({
-  events,
   getEventById,
   comments,
   getComments,
   createComment,
   userId,
+  isAuth,
 }) => {
+  const [onClickComment, setOnClickComment] = useState(false);
+  const [commentProps, setCommentProps] = useState();
+
+  const [eventProps, setEventProps] = useState({
+    id: 0,
+    name: "",
+    imageUrl: "",
+    explanation: "",
+    director: "",
+    point: 0,
+    startDate: new Date(),
+    endDate: new Date(),
+    type: "",
+    quota: 0,
+    donated: 0,
+    longitude: 0,
+    latitude: 0,
+  });
+
   const eventId = useParams();
   useEffect(() => {
-    getEventById({ id: eventId });
+    getEventById({ id: eventId.id }).then((res) => {
+      setEventProps(res.payload);
+    });
     getComments();
   }, []);
 
-  const [onClickComment, setOnClickComment] = useState(false);
-  const [commentProps, setCommentProps] = useState();
-  const event = events[0];
+  const event = eventProps;
   let navigate = useNavigate();
   const onClickSentComment = (comment) => {
     setCommentProps({
       date: new Date(),
       eventId: eventId.id,
-      userId: userId,
+      userId: parseInt(userId),
       content: comment.comment,
     });
   };
   useEffect(() => {
     if (commentProps) {
-      console.log("commentprops,", commentProps);
       createComment(commentProps).then((response) => {
-        console.log("repsonse", response);
         setOnClickComment(false);
       });
     }
@@ -52,9 +67,11 @@ const Event = ({
   return (
     <Layout>
       <div className="updateButtonContainer">
-        <Link className="updateButton" to={`/update-event/${eventId.id}`}>
-          Güncelle
-        </Link>
+        {userId == "Admin" && (
+          <Link className="updateButton" to={`/update-event/${eventId.id}`}>
+            Güncelle
+          </Link>
+        )}
       </div>
       <div className="eventInfoBase">
         <div className="eventInfo">
@@ -70,7 +87,18 @@ const Event = ({
             <Moment format="DD-MM-YYYY">{event.endDate}</Moment>
           </div>
 
-          <button className="buyButton" onClick={() => navigate("/buy")}>
+          <button
+            className="buyButton"
+            onClick={() => {
+              isAuth
+                ? navigate("/buy", {
+                    state: {
+                      eventId: eventId,
+                    },
+                  })
+                : navigate("/sign-in");
+            }}
+          >
             Bilet Al
           </button>
           <span className="eventQuota">Kontenjan:{event.quota}</span>
@@ -80,20 +108,27 @@ const Event = ({
           <div className="infoBox">
             <p className="eventSummary">{event.explanation}</p>
           </div>
-
-          <div className="maps">Maps gelecek</div>
+          <div className="mapContainer">
+            <YMaps>
+              <div>
+                <Map defaultState={{ center: [30.31, 41], zoom: 8 }} />
+              </div>
+            </YMaps>
+          </div>
         </div>
       </div>
 
-      <div className="commentsHeader">
-        <button
-          onClick={() => setOnClickComment(!onClickComment)}
-          className="commentButton"
-        >
-          {!onClickComment && <AiOutlinePlus className="icon" />}
-          {!onClickComment ? "Yorum Yap" : "Bitir"}
-        </button>
-      </div>
+      {isAuth && (
+        <div className="commentsHeader">
+          <button
+            onClick={() => setOnClickComment(!onClickComment)}
+            className="commentButton"
+          >
+            {!onClickComment && <AiOutlinePlus className="icon" />}
+            {!onClickComment ? "Yorum Yap" : "Bitir"}
+          </button>
+        </div>
+      )}
 
       {onClickComment && (
         <div className="commentWrapper">
@@ -124,7 +159,11 @@ const Event = ({
 };
 
 const mapStateToProps = (state) => {
-  return { events: state.events, comments: state.comments };
+  return {
+    comments: state.comments,
+    isAuth: state.auth.isAuth,
+    userId: state.auth.userId,
+  };
 };
 export default connect(mapStateToProps, {
   getEventById,

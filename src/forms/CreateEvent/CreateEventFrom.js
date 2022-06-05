@@ -4,10 +4,20 @@ import Input from "../../components/Input/Input";
 import { Link } from "react-router-dom";
 import React from "react";
 import { withFormik } from "formik";
-
+import DatePickerComponent from "../../components/DatePicker/DatePicker";
+import DropdownComponent from "../../components/Dropdown/DropdownComponent";
+import EventType from "../../types/eventType.types";
 const CreateEventInnerForm = (props) => {
-  const { values, touched, errors, handleChange, handleBlur, handleSubmit } =
-    props;
+  const {
+    values,
+    setFieldValue,
+    touched,
+    errors,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = props;
+
   return (
     <div className="signinBase">
       <div className="signinWrapper">
@@ -56,35 +66,27 @@ const CreateEventInnerForm = (props) => {
             value={values.point}
             error={errors.point}
             type="text"
+            pattern="[0-9]*"
+            isNumber={true}
             label="Puan: "
           ></Input>
-          <Input
-            name="startDate"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.startDate}
-            error={errors.startDate}
-            type="text"
-            label="Başlangıc Tarihi: "
-          ></Input>
-          <Input
-            name="endDate"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.endDate}
-            error={errors.endDate}
-            type="text"
+
+          <DatePickerComponent
+            label="Başlangıç Tarihi"
+            selectedDate={(date) => setFieldValue("startDate", date)}
+          ></DatePickerComponent>
+
+          <DatePickerComponent
             label="Bitiş Tarihi: "
-          ></Input>
-          <Input
-            name="type"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.type}
-            error={errors.type}
-            type="text"
+            selectedDate={(date) => setFieldValue("endDate", date)}
+          ></DatePickerComponent>
+
+          <DropdownComponent
             label="Etkinlik Türü: "
-          ></Input>
+            options={EventType}
+            selectedOption={(op) => setFieldValue("type", op.value)}
+          ></DropdownComponent>
+
           <Input
             name="quota"
             onChange={handleChange}
@@ -93,6 +95,8 @@ const CreateEventInnerForm = (props) => {
             error={errors.quota}
             type="text"
             label="Kontenjan: "
+            pattern="[0-9]*"
+            isNumber={true}
           ></Input>
           <Input
             name="longitude"
@@ -102,6 +106,8 @@ const CreateEventInnerForm = (props) => {
             error={errors.longitude}
             type="text"
             label="Konum(Boylam): "
+            pattern="[0-9]*"
+            isNumber={true}
           ></Input>
           <Input
             name="latitude"
@@ -111,7 +117,10 @@ const CreateEventInnerForm = (props) => {
             error={errors.latitude}
             type="text"
             label="Konum(Enlem): "
+            pattern="[0-9]*"
+            isNumber={true}
           ></Input>
+
           <button className="submitButton" type="submit">
             Oluştur
           </button>

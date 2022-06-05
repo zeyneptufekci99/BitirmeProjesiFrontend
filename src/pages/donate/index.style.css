@@ -1,0 +1,36 @@
+.donateBase{
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+}
+
+.eventButtonContainer{
+    background-color: #00A36C;
+    padding: 5px;
+    display: grid;
+    cursor: pointer;
+}
+.eventButtonBoxContainser{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.eventButtonImage{
+    height: 200px;
+    width: 150px;
+}
+
+.pageTitle{
+    text-align: center;
+  font-size: 30px;
+  color: #5f9ea0;
+  font-weight: bold;
+  margin-top:40px;
+  margin-bottom:40px;
+  background-color: transparent;
+}
