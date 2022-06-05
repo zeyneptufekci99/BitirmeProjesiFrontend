@@ -17,6 +17,7 @@ const Event = ({
   getComments,
   createComment,
   userId,
+  roleId,
   isAuth,
 }) => {
   const [onClickComment, setOnClickComment] = useState(false);
@@ -67,7 +68,7 @@ const Event = ({
   return (
     <Layout>
       <div className="updateButtonContainer">
-        {userId == "Admin" && (
+        {roleId == "Admin" && (
           <Link className="updateButton" to={`/update-event/${eventId.id}`}>
             Güncelle
           </Link>
@@ -163,6 +164,7 @@ const mapStateToProps = (state) => {
     comments: state.comments,
     isAuth: state.auth.isAuth,
     userId: state.auth.userId,
+    roleId: state.auth.roleId,
   };
 };
 export default connect(mapStateToProps, {
