@@ -41,7 +41,15 @@ function ApplicationRouter() {
         ></Route>
         <Route path="/events" element={<EventList></EventList>}></Route>
         <Route path="/contact" element={<Contact></Contact>}></Route>
-        <Route path="/buy" element={<Buy></Buy>}></Route>
+
+        <Route
+          path="/buy"
+          element={
+            <RequireAuth roles={["Admin", "Donor", "User"]}>
+              <Buy></Buy>
+            </RequireAuth>
+          }
+        ></Route>
 
         <Route
           path="/create-event"

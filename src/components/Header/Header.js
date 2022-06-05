@@ -18,7 +18,7 @@ const Header = ({ isAuth, roleId }) => {
         <NavLink className="options" to={"/contact"}>
           <span>İletişim</span>
         </NavLink>
-        {roleId == "Admin" && (
+        {roleId == "Donor" && (
           <NavLink className="options" to={"/donate"}>
             <span>Bilet Bağışı</span>
           </NavLink>
