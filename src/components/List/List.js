@@ -7,7 +7,7 @@ const List = (props) => {
     <Container align="center" justify="center">
       <Row align="center" justify="center" debug>
         {props.list.map((item, index) => (
-          <Col lg={3} md={5} sm={8} xs={8} key={index}>
+          <Col lg={4} md={8} sm={8} xs={8} key={index}>
             <Card
               id={item.id}
               name={item.name}

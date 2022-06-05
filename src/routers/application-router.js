@@ -14,7 +14,7 @@ import Buy from "../pages/buy";
 import Contact from "../pages/contact";
 import Donate from "../pages/donate";
 import RequireAuth from "../utils/require-auth";
-function ApplicationRouter(props) {
+function ApplicationRouter() {
   return (
     <>
       <Routes>
@@ -30,7 +30,15 @@ function ApplicationRouter(props) {
           path="/events/:id"
           element={<EventWrapper></EventWrapper>}
         ></Route>
-        <Route path="donate" element={<Donate></Donate>}></Route>
+
+        <Route
+          path="donate"
+          element={
+            <RequireAuth roles={["Donor", "Admin"]}>
+              <Donate></Donate>
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="/events" element={<EventList></EventList>}></Route>
         <Route path="/contact" element={<Contact></Contact>}></Route>
         <Route path="/buy" element={<Buy></Buy>}></Route>
@@ -54,7 +62,15 @@ function ApplicationRouter(props) {
 
         <Route path="/sign-in" element={<SignIn></SignIn>}></Route>
         <Route path="/sign-up" element={<SignUp></SignUp>}></Route>
-        <Route path="/profile" element={<Profile></Profile>}></Route>
+
+        <Route
+          path="/profile"
+          element={
+            <RequireAuth roles={["User", "Admin", "Donor"]}>
+              <Profile></Profile>
+            </RequireAuth>
+          }
+        ></Route>
       </Routes>
     </>
   );
