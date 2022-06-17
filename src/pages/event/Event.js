@@ -10,7 +10,8 @@ import { useNavigate } from "react-router-dom";
 import CommentForm from "../../forms/Comment/CommentForm";
 import { getComments, createComment } from "../../slice/comment.slice";
 import { Link } from "react-router-dom";
-import { Map, YMaps } from "react-yandex-maps";
+
+import MyMapComponent from "../../components/Maps/Maps";
 const Event = ({
   getEventById,
   comments,
@@ -110,11 +111,10 @@ const Event = ({
             <p className="eventSummary">{event.explanation}</p>
           </div>
           <div className="mapContainer">
-            <YMaps>
-              <div>
-                <Map defaultState={{ center: [30.31, 41], zoom: 8 }} />
-              </div>
-            </YMaps>
+            <MyMapComponent
+              lat={parseFloat(event.latitude)}
+              long={parseFloat(event.longitude)}
+            ></MyMapComponent>
           </div>
         </div>
       </div>

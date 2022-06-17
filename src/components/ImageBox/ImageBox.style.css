@@ -1,9 +1,15 @@
 .imageContainer{
   margin: 5px;
   padding: 20px;
-  width:300px;
-  height: auto;
+  width:fit-content;
+  height: fit-content;
   background-color: rgba(255, 255, 255, 1);
   border: rgba(0, 163, 108, 1) 3px solid;
   border-radius: 25px;
+}
+.image{
+  width:20%;
+  height: 100px;
+  object-fit: cover;
+  background-size: cover;
 }

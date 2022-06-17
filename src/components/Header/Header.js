@@ -1,14 +1,21 @@
 import "./Header.style.css";
 import { FaRegUser } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import React from "react";
 import { connect } from "react-redux";
+import { FiLogOut } from "react-icons/fi";
 
-const Header = ({ isAuth, roleId }) => {
+import { logout } from "../../slice/auth.slice";
+const Header = ({ isAuth, roleId, logout }) => {
+  let navigate = useNavigate();
   return (
     <div className="headerBase">
       <NavLink className="span" to={"/"}>
-        <span>Bitirme Projesi</span>
+        <img
+          className="logo"
+          src="https://findicons.com/files/icons/2770/ios_7_icons/512/student.png"
+        ></img>
+        <span>SosyalÖğrenci</span>
       </NavLink>
       <div className="optionContainer">
         <NavLink className="options" to={"/events"}>
@@ -26,9 +33,19 @@ const Header = ({ isAuth, roleId }) => {
       </div>
 
       <div className="iconContainer">
-        <NavLink className="span" to={isAuth ? "/profile" : "/sign-in"}>
+        <NavLink to={isAuth ? "/profile" : "/sign-in"}>
           <FaRegUser className="icon"></FaRegUser>
         </NavLink>
+        {isAuth && (
+          <FiLogOut
+            onClick={() =>
+              logout().then(() => {
+                navigate("/");
+              })
+            }
+            className="logoutIcon"
+          ></FiLogOut>
+        )}
       </div>
     </div>
   );
@@ -41,4 +58,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(Header);
+export default connect(mapStateToProps, { logout })(Header);

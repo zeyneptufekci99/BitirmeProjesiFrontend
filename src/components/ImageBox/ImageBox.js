@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const ImageBox = ({ imageUrl }) => {
   return (
     <div className="imageContainer">
-      <img src={imageUrl} alt="image" />
+      <img src={imageUrl} className="image" alt="image" />
     </div>
   );
 };

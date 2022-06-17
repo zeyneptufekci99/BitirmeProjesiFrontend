@@ -1,17 +1,25 @@
-import "./SignUp.style.css";
+import "./Profile.style.css";
 
 import Input from "../../components/Input/Input";
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import { withFormik } from "formik";
 
-const SignUpInnerForm = (props) => {
+const ProfileInnerForm = (props) => {
   const { values, touched, errors, handleChange, handleBlur, handleSubmit } =
     props;
+  const [onEditButtonClick, setOnEditButtonClick] = useState(true);
   return (
-    <div className="signinBase">
-      <div className="signinWrapper">
-        <h1>Üye Ol</h1>
+    <div className="ProfileBase">
+      <div className="profileWrapper">
+        <h1>Profil</h1>
+        <button
+          className="editButton"
+          onClick={() => setOnEditButtonClick(!onEditButtonClick)}
+        >
+          {!onEditButtonClick ? "Vazgeç" : "Düzenle"}
+        </button>
+
         <form className="formBase" onSubmit={handleSubmit}>
           <Input
             onChange={handleChange}
@@ -21,6 +29,7 @@ const SignUpInnerForm = (props) => {
             name="username"
             type="text"
             label="Kullanıcı Adı:"
+            isReadOnly={onEditButtonClick}
           ></Input>
 
           <Input
@@ -31,6 +40,7 @@ const SignUpInnerForm = (props) => {
             error={errors.email}
             type="email"
             label="Email Adresiniz: "
+            isReadOnly={onEditButtonClick}
           ></Input>
           <Input
             name="name"
@@ -40,6 +50,7 @@ const SignUpInnerForm = (props) => {
             error={errors.name}
             type="text"
             label="Adınız: "
+            isReadOnly={onEditButtonClick}
           ></Input>
           <Input
             name="surname"
@@ -49,6 +60,7 @@ const SignUpInnerForm = (props) => {
             error={errors.surname}
             type="text"
             label="Soyadınız: "
+            isReadOnly={onEditButtonClick}
           ></Input>
           <Input
             name="password"
@@ -56,28 +68,37 @@ const SignUpInnerForm = (props) => {
             onBlur={handleBlur}
             value={values.password}
             error={errors.password}
-            type="password"
+            type={!onEditButtonClick ? "text" : "password"}
             label="Şifreniz: "
+            isReadOnly={onEditButtonClick}
+          ></Input>
+          <Input
+            name="point"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.point}
+            error={errors.point}
+            type="text"
+            label="Puanınız: "
+            isReadOnly={true}
           ></Input>
           <button className="submitButton" type="submit">
-            Üye Ol
+            Kaydet
           </button>
         </form>
-        <Link className="goToSignIn" to={"/sign-in"}>
-          Hesabınız var mı ? Giriş Yap.
-        </Link>
       </div>
     </div>
   );
 };
 
-const SignUpForm = withFormik({
-  mapPropsToValues: () => ({
-    name: "",
-    surname: "",
-    email: "",
-    password: "",
-    username: "",
+const ProfileForm = withFormik({
+  mapPropsToValues: (props) => ({
+    name: props.user.name ?? "",
+    surname: props.user.surname ?? "",
+    email: props.user.email ?? "",
+    password: props.user.password ?? "",
+    username: props.user.username ?? "",
+    point: props.user.point ?? "0",
   }),
 
   validate: (values) => {
@@ -102,10 +123,11 @@ const SignUpForm = withFormik({
   },
 
   handleSubmit: (values, action) => {
+    action.props.values(values);
     setTimeout(() => {
-      action.props.isSignedUp(values);
+      alert(JSON.stringify(values, null, 2));
     }, 1000);
   },
-})(SignUpInnerForm);
+})(ProfileInnerForm);
 
-export default SignUpForm;
+export default ProfileForm;
