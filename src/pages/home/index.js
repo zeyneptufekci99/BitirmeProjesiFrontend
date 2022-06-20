@@ -107,7 +107,7 @@ const Home = ({ getEvents, events, name, roleId }) => {
             <NewsBox label="Ücretsiz Bilet Var" links={ucretsizBilet}></NewsBox>
 
             <NewsBox
-              label="Ücretsiz Bilet Var"
+              label="Kontenjan Bitiyor"
               links={kontenjanBitiyor}
             ></NewsBox>
           </div>

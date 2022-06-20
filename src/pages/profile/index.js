@@ -25,7 +25,7 @@ const Profile = ({ userId, getUserById, updateUser }) => {
 
   useEffect(() => {
     if (user.name !== "") {
-      const modifiedValue = { ...user, id: userId };
+      const modifiedValue = { ...user };
       updateUser(modifiedValue).then((response) => {});
     }
   }, [user]);

@@ -42,7 +42,7 @@ const PopUpPointInfo = ({
     if (cookies.get("isClosed") == "open" && user.name != "") {
       const modifiedValue = {
         ...user,
-        id: parseInt(userId),
+        id: userId,
         point: user.point + count,
       };
       updateUser(modifiedValue).then((response) => {});

@@ -103,6 +103,7 @@ const SignUpForm = withFormik({
 
   handleSubmit: (values, action) => {
     setTimeout(() => {
+      alert("Üye olma başarılı");
       action.props.isSignedUp(values);
     }, 1000);
   },

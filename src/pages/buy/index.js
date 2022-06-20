@@ -20,7 +20,7 @@ const Buy = ({ getUserById, userId }) => {
     <Layout>
       <div className="buyBase">
         <span className="pageTitle">QR kodunu yetkili personel gösteriniz</span>
-        <QRCode value={value} />
+        <QRCode value={state.eventId} />
       </div>
     </Layout>
   );
